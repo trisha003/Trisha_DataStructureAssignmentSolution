@@ -1,0 +1,83 @@
+package com.code.one;
+
+
+
+import java.io.IOException;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+import com.code.one.Service;
+
+class Driver {
+
+	public static void main(String[] args) throws IOException {
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("enter the total no of floors in the building");
+		
+		int noOfFloor = sc.nextInt();
+
+	    int[] floors = new int[noOfFloor];
+		
+	   
+		for(int i=0; i<noOfFloor; i++)  
+		{  
+		System.out.println("enter the floor size given on day : "+(i+1));
+		floors[i] = sc.nextInt(); 
+		}  
+		System.out.println();
+		
+		Service service = new Service();
+		service.printConstructionTable(floors, noOfFloor);
+	}
+}
+
+
+
+
+
+
+package com.code.one;
+import java.util.PriorityQueue;
+
+public class Service {
+
+	public void printConstructionTable(int floor[],int noOfFloor) {
+		
+	System.out.println("The order of construction is as follows");
+	
+	
+	PriorityQueue<Integer> queue = new PriorityQueue<>(java.util.Collections.reverseOrder());
+
+	int[] tempArray = new int[noOfFloor];
+
+	int max = noOfFloor;
+
+	System.out.println();
+	for (int i = 0; i < noOfFloor; i++) {
+
+		System.out.println("Day: "+(i+1));
+		
+		
+		tempArray[i] = floor[i];
+
+		queue.add(tempArray[i]);
+
+
+		while (!queue.isEmpty() && queue.peek() == max) {
+
+			System.out.print(queue.poll() + " ");
+
+			max--;
+
+		}
+
+		System.out.println();
+
+	}
+
+  }
+
+}
+
